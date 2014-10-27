@@ -1,0 +1,9 @@
+.classpath
+.idea/
+.project
+*.xml
+scripts/
+src/
+test/
+web-app/
+out/
