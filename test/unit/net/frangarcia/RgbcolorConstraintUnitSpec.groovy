@@ -1,6 +1,5 @@
 package net.frangarcia
 
-import grails.validation.ValidationErrors
 import org.springframework.validation.Errors
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -23,11 +22,8 @@ class RgbcolorConstraintUnitSpec extends Specification {
             }
         and:
             def tmc = new RgbcolorConstraint()
-        and:
-            def object = new Object()
-            ValidationErrors errors = new ValidationErrors(object)
         when:
-            tmc.processValidate(object, rgbcolor, errors)
+            tmc.processValidate(null, rgbcolor, null)
         then:
             calls == expectedCalls
         cleanup:

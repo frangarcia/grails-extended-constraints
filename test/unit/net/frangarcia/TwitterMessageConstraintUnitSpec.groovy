@@ -1,6 +1,5 @@
 package net.frangarcia
 
-import grails.validation.ValidationErrors
 import org.springframework.validation.Errors
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -23,11 +22,8 @@ class TwitterMessageConstraintUnitSpec extends Specification {
             }
         and:
             def tmc = new TwitterMessageConstraint()
-        and:
-            def object = new Object()
-            ValidationErrors errors = new ValidationErrors(object)
         when:
-            tmc.processValidate(object, 'a'*size, errors)
+            tmc.processValidate(null, 'a'*size, null)
         then:
             calls == expectedCalls
         cleanup:

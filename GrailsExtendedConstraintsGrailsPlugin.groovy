@@ -14,10 +14,10 @@ class GrailsExtendedConstraintsGrailsPlugin {
 
     // TODO Fill in these fields
     def title = "Grails Extended Constraints Plugin" // Headline display name of the plugin
-    def author = "Your name"
-    def authorEmail = ""
+    def author = "Fran Garcia"
+    def authorEmail = "fgarciarico@gmail.com"
     def description = '''\
-Brief summary/description of the plugin.
+Grails extendend constraints plugin
 '''
 
     // URL to the plugin's documentation
