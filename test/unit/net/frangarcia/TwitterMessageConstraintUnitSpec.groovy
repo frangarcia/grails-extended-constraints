@@ -4,7 +4,6 @@ import grails.validation.ValidationErrors
 import org.springframework.validation.Errors
 import spock.lang.Specification
 import spock.lang.Unroll
-import net.frangarcia.*
 
 class TwitterMessageConstraintUnitSpec extends Specification {
 

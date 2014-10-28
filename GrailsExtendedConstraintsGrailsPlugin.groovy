@@ -1,3 +1,4 @@
+import net.frangarcia.TwitterMessageConstraint
 import org.codehaus.groovy.grails.validation.ConstrainedProperty
 
 class GrailsExtendedConstraintsGrailsPlugin {

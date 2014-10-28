@@ -4,7 +4,6 @@ import grails.validation.ValidationErrors
 import org.springframework.validation.Errors
 import spock.lang.Specification
 import spock.lang.Unroll
-import net.frangarcia.*
 
 class RgbcolorConstraintUnitSpec extends Specification {
 
@@ -14,11 +13,11 @@ class RgbcolorConstraintUnitSpec extends Specification {
     }
 
     @Unroll
-    def "If content has more than 140 chars, errors returns filled up"(){
+    def "If rgb color does not have the right format, reject value is called"(){
         given:
             def calls = 0
             RgbcolorConstraint.metaClass.rejectValue = { Object target,Errors errors, String defaultMessageCode, String code, Object[] args ->
-                if (defaultMessageCode=="Invalid string format" && code=="default.string.invalidFormat.message")
+                if (defaultMessageCode=="Invalid rgb color format" && code=="default.rgbcolor.invalidFormat.message")
                     calls++
                 return
             }

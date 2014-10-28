@@ -2,15 +2,16 @@ package net.frangarcia
 
 import org.codehaus.groovy.grails.validation.AbstractConstraint
 import org.springframework.validation.Errors
+import java.util.regex.Pattern
 
-class RgbcolorConstraint extends AbstractConstraint {
+class TwitterMessageConstraint extends AbstractConstraint {
 
-    public static final String CONSTRAINT_NAME = "rgbcolor"
+    public static final String CONSTRAINT_NAME = "twitterMessage"
 
     protected void processValidate(Object target, Object propertyValue, Errors errors) {
-        if (propertyValue ==~ /#[0-9A-Fa-f]{6}/) {
+        if (propertyValue?.size()>140) {
             Object[] args = [ constraintPropertyName, constraintOwningClass, propertyValue ]
-            rejectValue(target, errors, "Invalid rgb color format", "default.rgbcolor.invalidFormat.message", args)
+            rejectValue(target, errors, "Invalid string format", "default.string.invalidFormat.message", args)
             return
         }
     }
