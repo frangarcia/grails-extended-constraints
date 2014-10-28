@@ -6,38 +6,45 @@ import spock.lang.Specification
 import spock.lang.Unroll
 import net.frangarcia.*
 
-class TwitterMessageConstraintUnitSpec extends Specification {
+class RgbcolorConstraintUnitSpec extends Specification {
 
     def "Returning the name of the constraint"() {
         expect:
-            new TwitterMessageConstraint().name == "twitterMessage"
+            new RgbcolorConstraint().name == "rgbcolor"
     }
 
     @Unroll
     def "If content has more than 140 chars, errors returns filled up"(){
         given:
             def calls = 0
-            TwitterMessageConstraint.metaClass.rejectValue = { Object target,Errors errors, String defaultMessageCode, String code, Object[] args ->
+            RgbcolorConstraint.metaClass.rejectValue = { Object target,Errors errors, String defaultMessageCode, String code, Object[] args ->
                 if (defaultMessageCode=="Invalid string format" && code=="default.string.invalidFormat.message")
                     calls++
                 return
             }
         and:
-            def tmc = new TwitterMessageConstraint()
+            def tmc = new RgbcolorConstraint()
         and:
             def object = new Object()
             ValidationErrors errors = new ValidationErrors(object)
         when:
-            tmc.processValidate(object, 'a'*size, errors)
+            tmc.processValidate(object, rgbcolor, errors)
         then:
             calls == expectedCalls
         cleanup:
-            TwitterMessageConstraint.metaClass = null
+            RgbcolorConstraint.metaClass = null
         where:
-            size    ||  expectedCalls
-            0       ||  0
-            1       ||  0
-            140     ||  0
-            141     ||  1
+            rgbcolor    ||  expectedCalls
+            null        ||  1
+            ""          ||  1
+            "#"         ||  1
+            "#GGGGGG"   ||  1
+            "#0000000"  ||  1
+            "#FFFFFFF"  ||  1
+            "#000000"   ||  0
+            "#aaaaaa"   ||  0
+            "#AAAAAA"   ||  0
+            "#ffffff"   ||  0
+            "#FFFFFF"   ||  0
     }
 }

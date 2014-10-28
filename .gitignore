@@ -3,7 +3,5 @@
 .project
 *.xml
 *.iml
-scripts/
-src/
-web-app/
 out/
+target/
