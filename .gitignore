@@ -2,8 +2,8 @@
 .idea/
 .project
 *.xml
+*.iml
 scripts/
 src/
-test/
 web-app/
 out/
