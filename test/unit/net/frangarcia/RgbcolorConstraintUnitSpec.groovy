@@ -12,13 +12,12 @@ class RgbcolorConstraintUnitSpec extends Specification {
     }
 
     @Unroll
-    def "If rgb color does not have the right format, reject value is called"(){
+    def "If rgb color does not have the right format, reject value is called"() {
         given:
-            def calls = 0
-            RgbcolorConstraint.metaClass.rejectValue = { Object target,Errors errors, String defaultMessageCode, String code, Object[] args ->
+            int calls = 0
+            RgbcolorConstraint.metaClass.rejectValue = { target, Errors errors, String defaultMessageCode, String code, Object[] args ->
                 if (defaultMessageCode=="Invalid rgb color format" && code=="default.rgbcolor.invalidFormat.message")
                     calls++
-                return
             }
         and:
             def tmc = new RgbcolorConstraint()

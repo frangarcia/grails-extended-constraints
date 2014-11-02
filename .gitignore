@@ -1,7 +1,13 @@
+/.idea
+.DS_Store
 .classpath
-.idea/
 .project
-*.xml
+.settings
 *.iml
-out/
-target/
+*.log
+/out
+/target
+grails-extended-constraints-*.zip
+grails-extended-constraints-*.zip.sha1
+plugin.xml
+/web-app

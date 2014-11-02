@@ -12,13 +12,12 @@ class TwitterMessageConstraintUnitSpec extends Specification {
     }
 
     @Unroll
-    def "If content has more than 140 chars, errors returns filled up"(){
+    def "If content has more than 140 chars, errors returns filled up"() {
         given:
-            def calls = 0
-            TwitterMessageConstraint.metaClass.rejectValue = { Object target,Errors errors, String defaultMessageCode, String code, Object[] args ->
+            int calls = 0
+            TwitterMessageConstraint.metaClass.rejectValue = { target, Errors errors, String defaultMessageCode, String code, Object[] args ->
                 if (defaultMessageCode=="Invalid string format" && code=="default.string.invalidFormat.message")
                     calls++
-                return
             }
         and:
             def tmc = new TwitterMessageConstraint()
