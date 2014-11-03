@@ -1,6 +1,5 @@
 package net.frangarcia
 
-import grails.validation.ValidationErrors
 import groovy.json.JsonSlurper
 import org.springframework.validation.Errors
 import spock.lang.Specification
@@ -14,13 +13,12 @@ class JsonConstraintUnitSpec extends Specification {
     }
 
     @Unroll
-    def "If json does not have the right format, reject value is called"(){
+    def "If json does not have the right format, reject value is called"() {
         given:
-            def calls = 0
-            JsonConstraint.metaClass.rejectValue = { Object target,Errors errors, String defaultMessageCode, String code, Object[] args ->
+            int calls = 0
+            JsonConstraint.metaClass.rejectValue = { target, Errors errors, String defaultMessageCode, String code, Object[] args ->
                 if (defaultMessageCode=="Invalid json format" && code=="default.json.invalidFormat.message")
                     calls++
-                return
             }
         and:
             JsonSlurper.metaClass.parseText = { String str ->

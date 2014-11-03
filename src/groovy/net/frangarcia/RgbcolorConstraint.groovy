@@ -7,19 +7,16 @@ class RgbcolorConstraint extends AbstractConstraint {
 
     public static final String CONSTRAINT_NAME = "rgbcolor"
 
-    protected void processValidate(Object target, Object propertyValue, Errors errors) {
+    protected void processValidate(target, propertyValue, Errors errors) {
         if (!(propertyValue ==~ /#[0-9A-Fa-f]{6}/)) {
-            Object[] args = [ constraintPropertyName, constraintOwningClass, propertyValue ]
-            rejectValue(target, errors, "Invalid rgb color format", "default.rgbcolor.invalidFormat.message", args)
-            return
+            rejectValue(target, errors, "Invalid rgb color format", "default.rgbcolor.invalidFormat.message",
+            	[ constraintPropertyName, constraintOwningClass, propertyValue ] as Object)
         }
     }
 
     boolean supports(Class type) {
-        return type && String.class.isAssignableFrom(type);
+        String.isAssignableFrom(type)
     }
 
-    String getName() {
-        return CONSTRAINT_NAME;
-    }
+    String getName() { CONSTRAINT_NAME }
 }

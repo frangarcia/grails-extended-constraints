@@ -2,25 +2,21 @@ package net.frangarcia
 
 import org.codehaus.groovy.grails.validation.AbstractConstraint
 import org.springframework.validation.Errors
-import java.util.regex.Pattern
 
 class TwitterMessageConstraint extends AbstractConstraint {
 
     public static final String CONSTRAINT_NAME = "twitterMessage"
 
-    protected void processValidate(Object target, Object propertyValue, Errors errors) {
+    protected void processValidate(target, propertyValue, Errors errors) {
         if (propertyValue?.size()>140) {
-            Object[] args = [ constraintPropertyName, constraintOwningClass, propertyValue ]
-            rejectValue(target, errors, "Invalid string format", "default.string.invalidFormat.message", args)
-            return
+            rejectValue(target, errors, "Invalid string format", "default.string.invalidFormat.message",
+            	[ constraintPropertyName, constraintOwningClass, propertyValue ] as Object[])
         }
     }
 
     boolean supports(Class type) {
-        return type && String.class.isAssignableFrom(type);
+        String.isAssignableFrom(type)
     }
 
-    String getName() {
-        return CONSTRAINT_NAME;
-    }
+    String getName() { CONSTRAINT_NAME }
 }
