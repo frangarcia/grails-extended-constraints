@@ -6,6 +6,7 @@ import org.springframework.validation.Errors
 class RgbcolorConstraint extends AbstractConstraint {
 
     public static final String CONSTRAINT_NAME = "rgbcolor"
+    public static final String REGEXP_RGBCOLOR = /#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})/
     public static final List<String> NAMEDCOLORS = ["aliceblue",
                                                     "antiquewhite",
                                                     "aqua",
@@ -155,7 +156,7 @@ class RgbcolorConstraint extends AbstractConstraint {
                                                     "yellowgreen"]
 
     protected void processValidate(target, propertyValue, Errors errors) {
-        if (!(propertyValue ==~ /#[0-9A-Fa-f]{6}/) && !(NAMEDCOLORS.contains((propertyValue as String)?.toLowerCase()))) {
+        if (!(propertyValue ==~ REGEXP_RGBCOLOR) && !(NAMEDCOLORS.contains((propertyValue as String)?.toLowerCase()))) {
             rejectValue(target, errors, "Invalid rgb color format", "default.rgbcolor.invalidFormat.message",
             	[ constraintPropertyName, constraintOwningClass, propertyValue ] as Object)
         }

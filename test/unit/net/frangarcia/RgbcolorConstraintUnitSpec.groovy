@@ -40,6 +40,11 @@ class RgbcolorConstraintUnitSpec extends Specification {
             "#AAAAAA"               ||  0
             "#ffffff"               ||  0
             "#FFFFFF"               ||  0
+            "#000"                  ||  0
+            "#aaa"                  ||  0
+            "#AAA"                  ||  0
+            "#fff"                  ||  0
+            "#FFF"                  ||  0
             "aliceblue"             ||  0
             "antiquewhite"          ||  0
             "aqua"                  ||  0
